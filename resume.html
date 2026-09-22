@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="assets/img/profile.jpg">
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 <header class="site-header">
@@ -22,7 +23,7 @@
   </div>
 </header>
 <main>
-<div class="page-head"><div class="container">
+<div class="page-head"><div class="deco"><span class="ring r1"></span><span class="ring r2"></span><span class="dots"></span><svg class="squig" viewBox="0 0 120 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M2 12c10-12 20-12 30 0s20 12 30 0 20-12 30 0 20 12 26 0"/></svg></div><div class="container">
   <p class="eyebrow">Resume</p>
   <h1>Experience and <span>education</span></h1>
   <p>Senior Business Analyst · Product Management · Strategy &amp; Operations · San Francisco, CA · Authorized to work in the U.S.</p>
@@ -116,6 +117,8 @@
 </footer>
 <script>
 (function(){var h=document.querySelector('.site-header');function s(){h.classList.toggle('scrolled',window.scrollY>8)}s();addEventListener('scroll',s,{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px',threshold:.06});document.querySelectorAll('.rv, .rv-stagger > *').forEach(function(el){el.classList.add('rv');io.observe(el)});
+var rm=document.querySelectorAll('.roadmap a[data-target]');if(rm.length){var secs=[].map.call(rm,function(a){return document.getElementById(a.dataset.target)});var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){rm.forEach(function(a){a.classList.toggle('on',a.dataset.target===e.target.id)});var idx=[].indexOf.call(secs,e.target);document.querySelector('.roadmap .fill').style.height=((idx)/(secs.length-1)*100)+'%'}})},{rootMargin:'-40% 0px -50% 0px'});secs.forEach(function(s){if(s)so.observe(s)})}
 document.querySelectorAll('.player .facade').forEach(function(f){f.addEventListener('click',function(){var i=document.createElement('iframe');i.src='https://www.youtube-nocookie.com/embed/'+f.dataset.yt+'?autoplay=1&rel=0';i.title=f.dataset.title||'Video';i.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';i.allowFullscreen=true;f.parentNode.replaceChild(i,f)})})})();
 </script>
 </body>

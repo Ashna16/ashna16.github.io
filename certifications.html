@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="assets/img/profile.jpg">
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 <header class="site-header">
@@ -22,11 +23,18 @@
   </div>
 </header>
 <main>
-<div class="page-head"><div class="container">
-  <p class="eyebrow">Certifications and awards</p>
-  <h1>Credentials and <span>recognition</span></h1>
+<div class="page-head"><div class="deco"><span class="ring r1"></span><span class="ring r2"></span><span class="dots"></span><svg class="squig" viewBox="0 0 120 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M2 12c10-12 20-12 30 0s20 12 30 0 20-12 30 0 20 12 26 0"/></svg></div><div class="container">
+  <p class="eyebrow">Recognition</p>
+  <h1>Certifications and <span>Awards</span></h1>
 </div></div>
-<section class="section"><div class="container"><div class="grid-3"><div class="card cert"><img src="assets/img/cert-ibm.jpg" alt="" class=""><div class="body"><h3>IBM</h3><p>Advanced Internet of Things (IoT) · Data Analysis with Python · Python for Data Science and AI</p></div></div><div class="card cert"><img src="assets/img/cert-uc.jpg" alt="" class=""><div class="body"><h3>University of California</h3><p>Initiating and Planning Projects · Managing Project Risks and Changes · Budgeting and Scheduling</p></div></div><div class="card cert"><img src="assets/img/cert-gujarat.jpg" alt="" class=""><div class="body"><h3>Government of Gujarat</h3><p>Certifications in C, C++ and Core Java</p></div></div><div class="card cert"><img src="assets/img/cert-rbc.jpg" alt="" class=""><div class="body"><h3>RBC Quant &amp; Tech Services, Recognized Contributions 2024</h3><p>Featured projects in Q3 2024: TMS and Credit Hub.</p></div></div><div class="card cert"><img src="assets/img/cert-toi.png" alt="" class=""><div class="body"><h3>Times of India Public Speaking</h3><p>Top 5 contestant, regional chapter.</p></div></div><div class="card cert"><img src="assets/img/cert-aiesec.png" alt="" class="contain"><div class="body"><h3>Team Lead, AIESEC Global Outgoing Volunteer</h3><p>Led a team sending volunteers worldwide to teach and support education, for one year.</p></div></div></div></div></section>
+<section class="section"><div class="container">
+  <div class="section-head"><h2>Awards</h2></div>
+  <div class="grid-3"><div class="card cert rv"><img src="assets/img/cert-rbc.jpg" alt="" class=""><div class="body"><h3>RBC Quant &amp; Tech Services, Recognized Contributions 2024</h3><p>Featured projects in Q3 2024: TMS and Credit Hub.</p></div></div><div class="card cert rv"><img src="assets/img/cert-toi.png" alt="" class=""><div class="body"><h3>Times of India Public Speaking</h3><p>Top 5 contestant, regional chapter.</p></div></div><div class="card cert rv"><img src="assets/img/cert-aiesec.png" alt="" class="contain"><div class="body"><h3>Team Lead, AIESEC Global Outgoing Volunteer</h3><p>Led a team sending volunteers worldwide to teach and support education, for one year.</p></div></div></div>
+</div></section>
+<section class="section"><div class="container">
+  <div class="section-head"><h2>Certifications</h2></div>
+  <div class="grid-3"><div class="card cert rv"><img src="assets/img/cert-ibm.jpg" alt="" class=""><div class="body"><h3>IBM</h3><p>Advanced Internet of Things (IoT) · Data Analysis with Python · Python for Data Science and AI</p></div></div><div class="card cert rv"><img src="assets/img/cert-uc.jpg" alt="" class=""><div class="body"><h3>University of California</h3><p>Initiating and Planning Projects · Managing Project Risks and Changes · Budgeting and Scheduling</p></div></div><div class="card cert rv"><img src="assets/img/cert-gujarat.jpg" alt="" class=""><div class="body"><h3>Government of Gujarat</h3><p>Certifications in C, C++ and Core Java</p></div></div></div>
+</div></section>
 </main>
 <footer class="site-footer">
   <div class="container">
@@ -37,6 +45,8 @@
 </footer>
 <script>
 (function(){var h=document.querySelector('.site-header');function s(){h.classList.toggle('scrolled',window.scrollY>8)}s();addEventListener('scroll',s,{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px',threshold:.06});document.querySelectorAll('.rv, .rv-stagger > *').forEach(function(el){el.classList.add('rv');io.observe(el)});
+var rm=document.querySelectorAll('.roadmap a[data-target]');if(rm.length){var secs=[].map.call(rm,function(a){return document.getElementById(a.dataset.target)});var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){rm.forEach(function(a){a.classList.toggle('on',a.dataset.target===e.target.id)});var idx=[].indexOf.call(secs,e.target);document.querySelector('.roadmap .fill').style.height=((idx)/(secs.length-1)*100)+'%'}})},{rootMargin:'-40% 0px -50% 0px'});secs.forEach(function(s){if(s)so.observe(s)})}
 document.querySelectorAll('.player .facade').forEach(function(f){f.addEventListener('click',function(){var i=document.createElement('iframe');i.src='https://www.youtube-nocookie.com/embed/'+f.dataset.yt+'?autoplay=1&rel=0';i.title=f.dataset.title||'Video';i.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';i.allowFullscreen=true;f.parentNode.replaceChild(i,f)})})})();
 </script>
 </body>
