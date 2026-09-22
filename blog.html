@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog | Ashna Parekh Portfolio</title>
+<meta name="description" content="Credit Risk Analyzer: automating what analysts do manually every quarter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@500;600;700&family=Wix+Madefor+Text:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/profile.jpg">
+</head>
+<body>
+<header class="site-header">
+  <div class="row">
+    <a class="brand" href="index.html"><span>Ashna</span><span>Parekh</span></a>
+    <p class="tagline">Product /PM / Business Analyst / Quality Analyst</p>
+    <ul class="nav"><li><a href="index.html">ABOUT ME</a></li><li><a href="projects.html">PROJECTS</a></li><li><a href="resume.html">RESUME</a></li><li><a href="certifications.html">CERTIFICATIONS</a></li><li class="more active"><a href="#" onclick="return false">More</a><ul><li><a href="project-demo.html">PROJECT DEMO</a></li><li><a href="case-study.html">CASE STUDY</a></li><li><a href="blog.html">BLOG</a></li></ul></li></ul>
+  </div>
+</header>
+<main>
+<div class="blog-head">
+  <h1>BLOG</h1>
+  <p>A little piece of my thoughts</p>
+</div>
+<div class="article">
+  <p class="title">Credit Risk Analyzer: Automating What Analysts Do Manually Every Quarter</p>
+  <p class="subtitle">A full-stack product built at the intersection of financial services and AI</p>
+
+  <h3>The problem</h3>
+  <p>After a bank lends money to a company, the relationship doesn't end — it intensifies. Every month or quarter, a team of credit analysts is responsible for monitoring whether that borrower is still financially healthy enough to service the debt. That means pulling their latest financial documents — 10-Ks, income statements, balance sheets, cash flow statements, covenant reports — opening each one, copying the relevant numbers into Excel by hand, calculating risk ratios manually, and checking whether any covenant thresholds have been breached.</p>
+  <p>For a bank managing hundreds of borrowers, this process runs continuously. It is repetitive, time-consuming, and entirely manual. One mistyped number means a miscalculated ratio. One miscalculated ratio means a missed risk signal. One missed risk signal, in a lending context, can mean a default nobody saw coming.</p>
+  <p>This is not a niche problem. It is standard operating procedure across corporate lending, securitization finance, and credit underwriting at banks and financial institutions worldwide. The technology to automate it has existed for years. What was missing was someone willing to build it.</p>
+
+  <h3>What I built</h3>
+  <p>Credit Risk Analyzer is a full-stack application that automates the entire credit monitoring workflow — from raw financial document to credit decision — in seconds.</p>
+  <p>The user uploads any financial document. The system handles the rest.</p>
+  <p>Under the hood, the application runs a multi-stage pipeline. A FastAPI backend receives the uploaded file and orchestrates the entire process. pdfplumber, a Python library, opens the document and reads its raw text and table data page by page — handling the reality that financial documents are not structured for machines. A custom financial_parser.py module then processes that raw output, identifying which numbers correspond to which financial fields: revenue, net income, total debt, total equity, operating cash flow, capital expenditure, and more.</p>
+  <p>What makes this pipeline trustworthy in a real financial context is the per-field confidence scoring. Every single extracted value is assigned a confidence score. Analysts don't just see the number — they see how confident the system is in that number. This is critical for adoption in a regulated environment. A bank cannot act on data it cannot trust. By surfacing confidence at the field level, the system tells analysts exactly where to focus their verification effort rather than requiring them to check everything or trust nothing.</p>
+  <p>Once extraction is complete, the application calculates 12 credit risk ratios across five categories. Liquidity ratios — Current Ratio and Quick Ratio — assess the borrower's ability to meet short-term obligations. Leverage ratios — Debt-to-Equity and Debt-to-EBITDA — measure how much debt the company is carrying relative to its assets and earnings. Coverage ratios — Debt Service Coverage Ratio and Interest Coverage — determine whether the company generates enough cash to service its debt. Profitability ratios — Gross Margin, Net Margin, Return on Assets, and Return on Equity — evaluate the health of the underlying business. Cash flow ratios — Operating Cash Flow Ratio and Free Cash Flow — confirm whether the company is generating real cash, not just accounting profit.</p>
+  <p>Each ratio is scored against an industry benchmark threshold and flagged as Low, Medium, or High risk. An overall credit score is generated, and a policy-approved loan limit is calculated automatically. The entire output is displayed in a Streamlit dashboard — a clean, readable interface that gives a credit officer everything they need to make a lending decision without touching a spreadsheet.</p>
+  <p>To validate the system against a real-world document, I ran a 168-page Microsoft 10-K through the full pipeline. The system returned a complete risk assessment — Low risk, $20M policy-approved loan limit — in 20 seconds.</p>
+
+  <h3>The product decisions behind the build</h3>
+  <p>Three decisions shaped the product in meaningful ways.</p>
+  <p>The first was to start from the raw document, not structured data input. Every other credit tool I encountered during research requires the analyst to enter the numbers themselves. That defeats the purpose entirely — the pain is the manual extraction, not the ratio calculation. The product had to begin with the document as the input and the credit decision as the output, with no human data entry in between.</p>
+  <p>The second was the confidence scoring. Early versions of the parser returned extracted values without any indication of reliability. That created a trust problem — an analyst looking at an extracted revenue figure of $198 billion has no way of knowing whether the parser found that number on page 3 in a clearly labeled table or inferred it from an ambiguous footnote on page 147. Per-field confidence scoring solves that problem. It transforms the tool from a black box into a transparent assistant that shows its work.</p>
+  <p>The third was the ratio selection. Twelve ratios across five categories was not an arbitrary number. Each metric maps to a specific question a credit committee actually asks during a loan review. Can this company pay its bills this quarter? Is it overleveraged? Can it service its debt from operating cash flow? Is the business itself profitable? Is the profit real cash or accounting noise? Every metric has a reason to be there, and every metric that is not there was deliberately excluded.</p>
+
+  <h3>Technical architecture</h3>
+  <p>The application is built as a decoupled full-stack system. The frontend runs in Streamlit, providing the user interface for document upload, extraction review, ratio dashboard, and credit decision output. The backend is a FastAPI application that exposes a set of REST API endpoints — the primary one being POST /api/credit/documents/upload-and-parse, which triggers the full extraction and analysis pipeline on document upload.</p>
+  <p>Data persistence is handled by PostgreSQL, a production-grade relational database, across four tables: documents stores the uploaded file metadata, extracted_financials stores every extracted field with its confidence score, credit_analyses stores the overall credit score and risk band, and metric_scores stores each individual ratio with its calculated value and risk flag. SQLAlchemy serves as the ORM layer between the FastAPI application and the database. The entire backend is containerised using Docker, enabling consistent deployment across environments.</p>
+  <p>Tech Stack: Python · FastAPI · pdfplumber · PostgreSQL · SQLAlchemy · Docker · Streamlit · Figma</p>
+
+  <h3>What this means in practice</h3>
+  <p>The benchmark that matters is not technical — it is operational. A credit analyst monitoring a portfolio of 200 borrowers, each requiring quarterly document processing, is looking at 800 document reviews per year. At an optimistic estimate of two hours per document for manual extraction, ratio calculation, and covenant checking, that is 1,600 hours of analyst time annually — on one portfolio, on one task.</p>
+  <p>Credit Risk Analyzer reduces that to seconds per document. The analyst's role shifts from data entry and calculation to review and decision-making. That is not a marginal efficiency gain. It is a fundamental change in how credit monitoring work gets done.</p>
+
+  <h3>Reflections</h3>
+  <p>The hardest part of building this was not the technology — it was understanding financial documents well enough to parse them correctly. A 10-K is not a database. It is a narrative document with embedded tables, multi-year comparative figures, and financial line items that appear in different formats across different companies and different years. Revenue might appear as a single line item on page 6 or as the sum of five segment revenues on page 47. EBITDA rarely appears as a labeled line item at all — it must be derived from operating income and depreciation figures that may themselves be buried in footnotes.</p>
+  <p>Getting the extraction right required reading financial statements the way an analyst reads them — understanding the structure, knowing where to look, and building logic that handles the variability of real-world documents rather than clean, structured test data. That process taught me more about data quality as a product problem than any course or textbook could.</p>
+  <p>Bad extraction produces bad ratios. Bad ratios produce bad credit decisions. The parser is not just a technical component — it is the foundation on which every downstream output depends. Getting it right is the product.</p>
+
+  <img src="assets/img/blog-article.jpg" alt="">
+</div>
+</main>
+<footer class="site-footer">
+  <div class="row">
+    <div class="copy">
+      <p>© 2025 by Ashna Parekh</p>
+      <img src="assets/img/logo.png" alt="">
+    </div>
+    <div class="contact">
+      <div><strong>Email</strong><a href="mailto:ashna.parekh1998@gmail.com">ashna.parekh1998@gmail.com</a></div>
+      <div><strong>Follow</strong><div class="social"><a href="https://x.com/AshnaParekh98" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://github.com/Ashna16" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a><a href="http://www.linkedin.com/in/ashna-parekh-50b025110" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a></div></div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

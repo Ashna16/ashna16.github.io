@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROJECT DEMO | Ashna Parekh Portfolio</title>
+<meta name="description" content="Ashna Parekh — Product / PM / Business Analyst / Quality Analyst. Personal portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@500;600;700&family=Wix+Madefor+Text:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/profile.jpg">
+</head>
+<body>
+<header class="site-header">
+  <div class="row">
+    <a class="brand" href="index.html"><span>Ashna</span><span>Parekh</span></a>
+    <p class="tagline">Product /PM / Business Analyst / Quality Analyst</p>
+    <ul class="nav"><li><a href="index.html">ABOUT ME</a></li><li><a href="projects.html">PROJECTS</a></li><li><a href="resume.html">RESUME</a></li><li><a href="certifications.html">CERTIFICATIONS</a></li><li class="more active"><a href="#" onclick="return false">More</a><ul><li><a href="project-demo.html">PROJECT DEMO</a></li><li><a href="case-study.html">CASE STUDY</a></li><li><a href="blog.html">BLOG</a></li></ul></li></ul>
+  </div>
+</header>
+<main>
+<div class="demo">
+  <h1>Project Demo</h1>
+
+  <h2 id="baqa">BA / QA Automation Pipeline</h2>
+  <div class="player"><video controls preload="metadata" poster="assets/img/poster-baqa.jpg" src="assets/video/baqa-automation.mp4"></video></div>
+
+  <h2 id="credit">Credit Analysis Tool</h2>
+  <div class="player"><video controls preload="metadata" poster="assets/img/poster-credit.jpg" src="assets/video/credit-analysis.mp4"></video></div>
+  <div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 701.31" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Credit Analysis Tool architecture diagram">
+<g font-size="16" font-weight="400">
+<defs>
+<marker orient="auto-start-reverse" markerHeight="6" markerWidth="6" refY="5" refX="8" viewBox="0 0 10 10" id="arrow">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#73726c" fill="none" d="m2 1 6 4-6 4"></path>
+</marker>
+<marker orient="auto-start-reverse" markerHeight="6" markerWidth="6" refY="5" refX="8" viewBox="0 0 10 10" id="arrow-o">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#993c1d" fill="none" d="m2 1 6 4-6 4"></path>
+</marker>
+</defs>
+<g>
+<path stroke-width=".5" fill="#eeedfe" stroke="#534ab7" d="M490 24v40a8 8 0 0 1-8 8H198a8 8 0 0 1-8-8V24a8 8 0 0 1 8-8h284a8 8 0 0 1 8 8z"></path>
+<text text-anchor="middle" y="36" x="340" fill="#3c3489" font-size="14" font-weight="500" dominant-baseline="central">Streamlit UI (port 9000)</text>
+<text text-anchor="middle" y="56" x="340" fill="#534ab7" font-size="12" dominant-baseline="central">User uploads PDF — triggers API call</text>
+</g>
+<path marker-end="url(#arrow)" stroke="#73726c" fill="none" stroke-width="1.5" d="M340 72v32"></path>
+<path stroke-dasharray="6px,3px" stroke-width=".5" stroke="rgba(31,30,29,.3)" fill="none" d="M630 116v316c0 6.627-5.373 12-12 12H42c-6.627 0-12-5.373-12-12V116c0-6.627 5.373-12 12-12h576c6.627 0 12 5.373 12 12z"></path>
+<text fill="#3d3d3a" y="122" x="52" font-size="12">FastAPI framework (port 8000)</text>
+<g>
+<path stroke-width=".5" fill="#e1f5ee" stroke="#0f6e56" d="M620 138v40a8 8 0 0 1-8 8H68a8 8 0 0 1-8-8v-40a8 8 0 0 1 8-8h544a8 8 0 0 1 8 8z"></path>
+<text text-anchor="middle" y="150" x="340" fill="#085041" font-size="14" font-weight="500" dominant-baseline="central">POST /api/credit/documents/upload-and-parse</text>
+<text text-anchor="middle" y="170" x="340" fill="#0f6e56" font-size="12" dominant-baseline="central">The API endpoint — receives the PDF, orchestrates everything below</text>
+</g>
+<path marker-end="url(#arrow)" stroke="#73726c" fill="none" stroke-width="1.5" d="M340 186v24"></path>
+<g>
+<path stroke-width=".5" fill="#faece7" stroke="#993c1d" d="M320 218v44a8 8 0 0 1-8 8H68a8 8 0 0 1-8-8v-44a8 8 0 0 1 8-8h244a8 8 0 0 1 8 8z"></path>
+<text text-anchor="middle" y="232" x="190" fill="#712b13" font-size="14" font-weight="500" dominant-baseline="central">pdfplumber (library)</text>
+<text text-anchor="middle" y="252" x="190" fill="#993c1d" font-size="12" dominant-baseline="central">Opens PDF, reads text + tables</text>
+</g>
+<g>
+<path stroke-width=".5" fill="#faece7" stroke="#993c1d" d="M620 218v44a8 8 0 0 1-8 8H368a8 8 0 0 1-8-8v-44a8 8 0 0 1 8-8h244a8 8 0 0 1 8 8z"></path>
+<text text-anchor="middle" y="232" x="490" fill="#712b13" font-size="14" font-weight="500" dominant-baseline="central">financial_parser.py</text>
+<text text-anchor="middle" y="252" x="490" fill="#993c1d" font-size="12" dominant-baseline="central">parse_financial_statements()</text>
+</g>
+<path marker-end="url(#arrow)" stroke="#73726c" fill="none" stroke-width="1.5" d="M320 240h38"></path>
+<path marker-end="url(#arrow-o)" stroke="#993c1d" fill="none" d="M190 270v30"></path>
+<path stroke="#993c1d" fill="none" d="M490 270v16"></path>
+<path stroke="#993c1d" fill="none" d="M490 286v14H340"></path>
+<path stroke="#993c1d" fill="none" d="M190 300h148"></path>
+<path marker-end="url(#arrow)" stroke="#73726c" fill="none" stroke-width="1.5" d="M340 300v14"></path>
+<g>
+<path stroke-width=".5" fill="#faece7" stroke="#993c1d" d="M520 322v44a8 8 0 0 1-8 8H168a8 8 0 0 1-8-8v-44a8 8 0 0 1 8-8h344a8 8 0 0 1 8 8z"></path>
+<text text-anchor="middle" y="334" x="340" fill="#712b13" font-size="14" font-weight="500" dominant-baseline="central">app.py — ratio + credit logic</text>
+<text text-anchor="middle" y="354" x="340" fill="#993c1d" font-size="12" dominant-baseline="central">Python + pandas: margins, coverage, score</text>
+</g>
+<path marker-end="url(#arrow)" stroke="#73726c" fill="none" stroke-width="1.5" d="M340 374v28"></path>
+<g>
+<path stroke-width=".5" fill="#faeeda" stroke="#854f0b" d="M520 410v40a8 8 0 0 1-8 8H168a8 8 0 0 1-8-8v-40a8 8 0 0 1 8-8h344a8 8 0 0 1 8 8z"></path>
+<text text-anchor="middle" y="422" x="340" fill="#633806" font-size="14" font-weight="500" dominant-baseline="central">save_extracted_financials()</text>
+<text text-anchor="middle" y="442" x="340" fill="#854f0b" font-size="12" dominant-baseline="central">SQLAlchemy writes rows to PostgreSQL</text>
+</g>
+<path marker-end="url(#arrow)" stroke="#73726c" fill="none" stroke-width="1.5" d="M340 458v32"></path>
+<g>
+<path stroke-width=".5" fill="#e6f1fb" stroke="#185fa5" d="M620 498v28a8 8 0 0 1-8 8H68a8 8 0 0 1-8-8v-28a8 8 0 0 1 8-8h544a8 8 0 0 1 8 8z"></path>
+<text text-anchor="middle" y="512" x="340" fill="#0c447c" font-size="14" font-weight="500" dominant-baseline="central">PostgreSQL — permanent storage</text>
+</g>
+<g>
+<path stroke-width=".5" fill="#e6f1fb" stroke="#185fa5" d="M194 554v36a6 6 0 0 1-6 6H70a6 6 0 0 1-6-6v-36a6 6 0 0 1 6-6h118a6 6 0 0 1 6 6z"></path>
+<text text-anchor="middle" y="566" x="129" fill="#0c447c" font-size="14" font-weight="500" dominant-baseline="central">documents</text>
+<text text-anchor="middle" y="584" x="129" fill="#185fa5" font-size="12" dominant-baseline="central">file + doc ID</text>
+</g>
+<g>
+<path stroke-width=".5" fill="#e6f1fb" stroke="#185fa5" d="M336 554v36a6 6 0 0 1-6 6H212a6 6 0 0 1-6-6v-36a6 6 0 0 1 6-6h118a6 6 0 0 1 6 6z"></path>
+<text text-anchor="middle" y="566" x="271" fill="#0c447c" font-size="14" font-weight="500" dominant-baseline="central">extracted_financials</text>
+<text text-anchor="middle" y="584" x="271" fill="#185fa5" font-size="12" dominant-baseline="central">revenue, debt...</text>
+</g>
+<g>
+<path stroke-width=".5" fill="#e6f1fb" stroke="#185fa5" d="M478 554v36a6 6 0 0 1-6 6H354a6 6 0 0 1-6-6v-36a6 6 0 0 1 6-6h118a6 6 0 0 1 6 6z"></path>
+<text text-anchor="middle" y="566" x="413" fill="#0c447c" font-size="14" font-weight="500" dominant-baseline="central">credit_analyses</text>
+<text text-anchor="middle" y="584" x="413" fill="#185fa5" font-size="12" dominant-baseline="central">score, risk band</text>
+</g>
+<g>
+<path stroke-width=".5" fill="#e6f1fb" stroke="#185fa5" d="M620 554v36a6 6 0 0 1-6 6H496a6 6 0 0 1-6-6v-36a6 6 0 0 1 6-6h118a6 6 0 0 1 6 6z"></path>
+<text text-anchor="middle" y="566" x="555" fill="#0c447c" font-size="14" font-weight="500" dominant-baseline="central">metric_scores</text>
+<text text-anchor="middle" y="584" x="555" fill="#185fa5" font-size="12" dominant-baseline="central">each ratio + flag</text>
+</g>
+<path stroke-width=".5" fill="#f5f4ed" stroke="rgba(31,30,29,.3)" d="M620 620v28a8 8 0 0 1-8 8H68a8 8 0 0 1-8-8v-28a8 8 0 0 1 8-8h544a8 8 0 0 1 8 8z"></path>
+<text text-anchor="middle" y="630" x="340" fill="#141413" font-size="14" font-weight="500" dominant-baseline="central">TablePlus</text>
+<text text-anchor="middle" y="648" x="340" fill="#3d3d3a" font-size="12" dominant-baseline="central">Visual viewer for PostgreSQL — same data, just easier to read</text>
+<text fill="#3d3d3a" text-anchor="middle" y="688" x="340" font-size="12">tap any box to explore</text>
+</g>
+</svg>
+</div>
+
+  <h2 id="strava">Strava_Your Personal AI Trainer</h2>
+  <div class="player"><video controls preload="metadata" poster="assets/img/poster-strava.jpg" src="assets/video/strava.mp4"></video></div>
+
+  <h2 id="propelai">PropelAI_Sell to Fortune 100 Companies</h2>
+  <div class="player portrait"><video controls preload="metadata" poster="assets/img/poster-propel.jpg" src="assets/video/propelai.mp4"></video></div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="row">
+    <div class="copy">
+      <p>© 2025 by Ashna Parekh</p>
+      <img src="assets/img/logo.png" alt="">
+    </div>
+    <div class="contact">
+      <div><strong>Email</strong><a href="mailto:ashna.parekh1998@gmail.com">ashna.parekh1998@gmail.com</a></div>
+      <div><strong>Follow</strong><div class="social"><a href="https://x.com/AshnaParekh98" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://github.com/Ashna16" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a><a href="http://www.linkedin.com/in/ashna-parekh-50b025110" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a></div></div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
