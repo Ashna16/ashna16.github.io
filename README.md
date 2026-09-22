@@ -2,4 +2,4 @@
 
 Personal portfolio of Ashna Parekh. Static HTML/CSS served by GitHub Pages.
 
-Pages: `index.html`, `work.html`, `projects.html`, `resume.html`, `certifications.html`, `project-demo.html`, `case-study.html` (+ `posts/`), `blog.html`.
+Pages: `index.html`, `work.html`, `projects.html`, `case-study.html` (+ `posts/`), `certifications.html`, `project-demo.html`, `resume.html`, `blog.html`.
