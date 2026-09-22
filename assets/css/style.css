@@ -308,28 +308,34 @@ strong { font-weight: 700; }
 .art.brand img { position: relative; width: 34%; height: auto; inset: auto; object-fit: contain; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
 
 /* ---------- Work road map ---------- */
-.work-layout { display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; }
-.roadmap-col { position: sticky; top: 96px; }
-.roadmap { position: relative; padding-left: 26px; display: flex; flex-direction: column; gap: 34px; }
-.roadmap .track { position: absolute; left: 9px; top: 10px; bottom: 10px; width: 3px; background: rgba(30,27,24,.1); border-radius: 3px; }
-.roadmap .track .fill { width: 100%; height: 0; background: var(--accent); border-radius: 3px; transition: height .5s cubic-bezier(.2,.7,.2,1); }
-.roadmap a { display: flex; gap: 14px; align-items: flex-start; color: var(--ink-3); position: relative; }
-.roadmap a:hover { text-decoration: none; color: var(--ink); }
-.roadmap .dot { position: absolute; left: -26px; top: 4px; width: 21px; height: 21px; border-radius: 50%; background: #fff; border: 3px solid rgba(30,27,24,.18); transition: border-color .3s, transform .3s, box-shadow .3s; }
-.roadmap .lbl b { display: block; font-size: 14px; color: inherit; line-height: 1.3; }
-.roadmap .lbl small { font-size: 12px; color: var(--ink-3); }
-.roadmap a.on { color: var(--ink); }
-.roadmap a.on .dot { border-color: var(--accent); background: var(--accent); transform: scale(1.1); box-shadow: 0 0 0 6px rgba(232,132,91,.18); }
+.work-layout { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
+.roadmap-col { position: sticky; top: 88px; }
+.road-wrap { max-width: 280px; }
+.roadmap { width: 100%; height: auto; display: block; overflow: visible; font-family: var(--body); }
+.roadmap .road { fill: none; stroke: #E9DCCF; stroke-width: 22; stroke-linecap: round; }
+.roadmap .road-line { fill: none; stroke: #fff; stroke-width: 2.5; stroke-dasharray: 8 10; stroke-linecap: round; opacity: .9; }
+.roadmap .road-fill { fill: none; stroke: var(--accent); stroke-width: 22; stroke-linecap: round; opacity: .55; transition: stroke-dashoffset .7s cubic-bezier(.2,.7,.2,1); }
+.roadmap .stop { cursor: pointer; }
+.roadmap .halo { fill: var(--accent); opacity: 0; transition: opacity .3s; }
+.roadmap .pin { fill: #fff; stroke: var(--ink-3); stroke-width: 3; transition: fill .3s, stroke .3s; }
+.roadmap .house path, .roadmap .house rect { fill: #fff; stroke: var(--ink-3); stroke-width: 2.5; stroke-linejoin: round; transition: stroke .3s, fill .3s; }
+.roadmap .org { font-size: 7.5px; font-weight: 800; fill: var(--ink-2); letter-spacing: .02em; }
+.roadmap .ttl { font-size: 12.5px; font-weight: 700; fill: var(--ink-3); transition: fill .3s; }
+.roadmap .yrs { font-size: 11px; fill: var(--ink-3); }
+.roadmap .stop:hover .ttl, .roadmap .stop.on .ttl { fill: var(--ink); }
+.roadmap .stop.on .pin { fill: var(--accent); stroke: var(--accent); }
+.roadmap .stop.on .house path, .roadmap .stop.on .house rect { stroke: var(--accent-2); fill: var(--accent-soft); }
+.roadmap .stop.on .org { fill: var(--accent-2); }
+.roadmap .stop.on .halo { opacity: .18; }
 .wsec { padding: 8px 0 56px; scroll-margin-top: 90px; }
 .wsec + .wsec { border-top: 1px solid var(--line); padding-top: 48px; }
 .work-main .employer { margin-bottom: 32px; }
 .work-main .employer-projects { margin-bottom: 8px; }
+.art.photo { padding: 0; }
+.art.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.card:hover .art.photo img { transform: scale(1.04); }
 @media (max-width: 900px) {
-  .work-layout { grid-template-columns: 1fr; gap: 16px; }
-  .roadmap-col { position: sticky; top: 72px; z-index: 5; background: rgba(255,248,243,.92); backdrop-filter: blur(10px); padding: 10px 0; margin: 0 -24px; }
-  .roadmap { flex-direction: row; gap: 18px; padding: 0 24px 0 24px; overflow-x: auto; }
-  .roadmap .track { display: none; }
-  .roadmap a { flex-direction: column; gap: 6px; min-width: 120px; }
-  .roadmap .dot { position: static; width: 12px; height: 12px; border-width: 2px; }
-  .roadmap .lbl b { font-size: 12px; }
+  .work-layout { grid-template-columns: 1fr; gap: 8px; }
+  .roadmap-col { position: static; }
+  .road-wrap { max-width: 320px; margin: 0 auto 8px; }
 }
